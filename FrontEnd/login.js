@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMessage = document.getElementById("error_message");
   const logoutLink = document.querySelector(".logout");
   const loginLink = document.querySelector(".login");
+  const myfilters = document.querySelector(".filters");
+  const adminBox = document.querySelector(".blackbox");
 
   const showLogin = () => {
     loginLink.style.display = "block";
@@ -10,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const showLogout = () => {
-    loginForm.style.display = "none";
     loginLink.style.display = "none";
     logoutLink.style.display = "block";
   };
@@ -18,9 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const logout = () => {
     localStorage.removeItem("token");
     showLogin();
+    window.location.reload(); // Cette ligne rafraîchit la page
   };
 
   if (localStorage.getItem("token")) {
+    myfilters.style.display = "none";
+    adminBox.style.display = "flex";
     showLogout();
   } else {
     showLogin();

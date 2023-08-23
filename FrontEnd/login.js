@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginLink = document.querySelector(".login");
   const myfilters = document.querySelector(".filters");
   const adminBox = document.querySelector(".blackbox");
+  const edit1 = document.querySelector(".edit1");
+  const edit2 = document.querySelector(".edit2");
 
   const showLogin = () => {
     loginLink.style.display = "block";
@@ -19,12 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const logout = () => {
     localStorage.removeItem("token");
     showLogin();
-    window.location.reload(); // Cette ligne rafraîchit la page
+    window.location.reload();
   };
 
   if (localStorage.getItem("token")) {
     myfilters.style.display = "none";
     adminBox.style.display = "flex";
+    edit1.style.display = "block";
+    edit2.style.display = "block";
     showLogout();
   } else {
     showLogin();

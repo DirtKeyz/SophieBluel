@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("token")) {
     myfilters.style.display = "none";
     adminBox.style.display = "flex";
-    edit1.style.display = "block";
-    edit2.style.display = "block";
+    edit1.style.display = "inline-block";
+    edit2.style.display = "inline-block";
     showLogout();
   } else {
     showLogin();
@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      errorMessage.textContent = "An error occurred during login";
+      errorMessage.textContent =
+        "Une erreur est survenue (serveur hors ligne ?)";
     }
   });
 

@@ -499,7 +499,7 @@ label {
   cursor: default;
 }
 
-.add_photo_btn {
+.add_photo {
   height: 100%;
   width: 173px;
   background-color: #cbd6dc;
@@ -525,4 +525,60 @@ label {
   border: 1px solid #b3b3b3;
   width: 420px;
   margin-top: 47px;
+}
+
+.edit_works {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 45px;
+}
+
+.edit_works img {
+  width: 90px;
+  height: 105px;
+  object-fit: cover;
+}
+
+.image-container {
+  position: relative;
+}
+
+.fa-arrows-up-down-left-right {
+  top: 6px;
+  right: 25px;
+}
+
+.fa-trash-can {
+  top: 6px;
+  right: 5px;
+}
+
+.fa-arrows-up-down-left-right,
+.fa-trash-can {
+  width: 17px;
+  height: 17px;
+  background-color: #000;
+  color: white;
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+}
+
+.confirmation-message {
+  display: none;
+}
+
+.confirmation-message:not(.hidden) {
+  display: block;
+  background-color: #4caf50;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
 }

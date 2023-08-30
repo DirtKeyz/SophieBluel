@@ -2,27 +2,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // Fonction pour récupérer les œuvres depuis l'API
   async function fetchWorks() {
     const url = "http://localhost:5678/api/works";
-    const response = await fetch(url); // Effectue une requête HTTP pour récupérer les données
+    const response = await fetch(url);
     if (!response.ok)
-      // Vérifie si la réponse est réussie
       throw new Error("Erreur lors de la récupération des données");
-    return await response.json(); // Convertit la réponse en format JSON
+    return await response.json();
   }
 
   // Fonction pour récupérer les catégories depuis l'API
   async function fetchCategories() {
     const url = "http://localhost:5678/api/categories";
-    const response = await fetch(url); // Effectue une requête HTTP pour récupérer les catégories
+    const response = await fetch(url);
     if (!response.ok)
-      // Vérifie si la réponse est réussie
       throw new Error("Erreur lors de la récupération des catégories");
-    return await response.json(); // Convertit la réponse en format JSON
+    return await response.json();
   }
 
   // Fonction pour supprimer le contenu de la div "gallery"
   function clearGallery() {
     const gallery = document.querySelector(".gallery");
-    gallery.innerHTML = ""; // Supprime le contenu actuel de la galerie d'œuvres
+    gallery.innerHTML = "";
   }
 
   // Fonction pour créer et ajouter les éléments HTML à la galerie
@@ -34,36 +32,36 @@ document.addEventListener("DOMContentLoaded", function () {
       const img = document.createElement("img");
       const figcaption = document.createElement("figcaption");
 
-      img.src = item.imageUrl; // Définit l'URL de l'image
-      img.alt = item.title; // Définit le texte alternatif de l'image
-      figcaption.textContent = item.title; // Définit le texte du figcaption
+      img.src = item.imageUrl;
+      img.alt = item.title;
+      figcaption.textContent = item.title;
 
       figure.appendChild(img);
       figure.appendChild(figcaption);
-      gallery.appendChild(figure); // Ajoute la figure à la galerie
+      gallery.appendChild(figure);
     });
   }
 
   // Fonction principale pour récupérer les œuvres, les catégories et mettre à jour la galerie
   async function fetchAndDisplayWorks() {
     try {
-      const worksData = await fetchWorks(); // Récupère les données des œuvres
-      const categoriesData = await fetchCategories(); // Récupère les données des catégories
+      const worksData = await fetchWorks();
+      const categoriesData = await fetchCategories();
 
-      clearGallery(); // Supprime le contenu actuel de la galerie
-      createAndAddElements(worksData); // Ajoute les éléments des œuvres à la galerie
+      clearGallery();
+      createAndAddElements(worksData);
 
       const filtersContainer = document.querySelector(".filters");
-      filtersContainer.innerHTML = ""; // Supprime les anciens boutons de filtrage
+      filtersContainer.innerHTML = "";
 
       const allButton = document.createElement("button");
-      allButton.textContent = "Tous"; // Crée un bouton "Tous"
-      allButton.classList.add("active"); // Active le bouton "Tous" par défaut
+      allButton.textContent = "Tous";
+      allButton.classList.add("active");
       filtersContainer.appendChild(allButton);
 
       categoriesData.forEach((category) => {
         const button = document.createElement("button");
-        button.textContent = category.name; // Crée un bouton pour chaque catégorie
+        button.textContent = category.name;
         filtersContainer.appendChild(button);
       });
 
@@ -76,13 +74,13 @@ document.addEventListener("DOMContentLoaded", function () {
           const selectedCategory = button.textContent;
           if (selectedCategory === "Tous") {
             clearGallery();
-            createAndAddElements(worksData); // Affiche toutes les œuvres
+            createAndAddElements(worksData);
           } else {
             const filteredWorks = worksData.filter(
               (work) => work.category.name === selectedCategory
             );
             clearGallery();
-            createAndAddElements(filteredWorks); // Affiche les œuvres de la catégorie sélectionnée
+            createAndAddElements(filteredWorks);
           }
         });
       });
@@ -91,6 +89,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Appel initial pour afficher les œuvres
   fetchAndDisplayWorks();
 });

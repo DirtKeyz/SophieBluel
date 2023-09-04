@@ -535,7 +535,8 @@ label {
   padding-top: 45px;
 }
 
-.edit_works img {
+.edit_works img,
+#imagePreview {
   width: 90px;
   height: 105px;
   object-fit: cover;
@@ -577,4 +578,19 @@ label {
   border-radius: 5px;
   text-align: center;
   display: none;
+}
+
+.selected-image {
+  height: 193px;
+  width: 129px;
+  object-fit: cover;
+}
+
+.validate-photo-btn[type="submit"] {
+  background-color: #a7a7a7;
+}
+
+.content_upload_img {
+  display: flex;
+  flex-direction: column;
 }

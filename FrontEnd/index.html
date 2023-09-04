@@ -187,17 +187,20 @@
             L'image a été ajoutée avec succès.
           </p>
           <div class="upload_img">
-            <i class="fa-regular fa-image"></i>
-            <input
-              type="file"
-              id="photoFile"
-              accept="image/jpeg,image/png"
-              style="display: none"
-            />
-            <label for="photoFile" class="add_photo" id="uploadedFileName">
-              + Ajouter photo</label
-            >
-            <p>jpg, png : 4mo max</p>
+            <div class="newPhotoPreview"></div>
+            <div class="content_upload_img">
+              <i class="fa-regular fa-image"></i>
+              <input
+                type="file"
+                id="photoFile"
+                accept="image/jpeg,image/png"
+                style="display: none"
+              />
+              <label for="photoFile" class="add_photo" id="uploadedFileName">
+                + Ajouter photo</label
+              >
+              <p>jpg, png : 4mo max</p>
+            </div>
           </div>
 
           <form id="addPhotoForm">
@@ -228,8 +231,6 @@
         </ul>
       </nav>
     </footer>
-    <script src="./script.js"></script>
-    <script src="./login.js"></script>
-    <script src="./modal.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

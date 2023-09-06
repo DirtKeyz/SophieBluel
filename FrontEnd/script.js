@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentUploadImg = document.querySelector(".content_upload_img");
   const validatePhotoButton = document.getElementById("addPhotoButton");
 
-  // RECUPERATION PROJETS ET CREATION DES FILTRES //
+  // RECUPERATION PROJETS //
+  // ET CREATION DES FILTRES //
 
   // Fonction pour récupérer les projets depuis l'API
 
@@ -134,7 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchAndDisplayWorks();
 
-  // CONNECTION DE L'UTILISATEUR //
+  // CONNECTION //
+  // DE L'UTILISATEUR //
 
   const showLogin = () => {
     loginLink.style.display = "block";
@@ -147,12 +149,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     showLogin();
     window.location.reload();
   };
 
-  if (localStorage.getItem("token")) {
+  if (sessionStorage.getItem("token")) {
     myfilters.style.display = "none";
     adminBox.style.display = "flex";
     edit1.style.display = "inline-block";
@@ -180,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("token", data.token);
         window.location.href = "index.html";
         showLogout();
       } else {
@@ -198,7 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
     logout();
   });
 
-  // GESTION DE LA MODALE //
+  // GESTION  //
+  // DE LA MODALE //
 
   // Afficher les projets dans la modale
 
@@ -293,7 +296,8 @@ document.addEventListener("DOMContentLoaded", () => {
     afficherImagesDansModale();
   });
 
-  //  SUPPRESSION PROJET
+  //  SUPPRESSION //
+  // PROJET //
 
   worksEdit.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -311,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const headers = {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           };
 
           const response = await fetch(`${urlWorks}/${workId}`, {
@@ -350,7 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  //  AJOUT PROJET
+  //  AJOUT //
+  //  PROJET  //
 
   // Récupérer les catégories depuis l'API
 
@@ -373,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchInitialCategories();
 
-  // Gérer l'ajout d'un nouveau projet
+  // Ajout d'un nouveau projet
 
   const addPhotoButton = document.getElementById("addPhotoButton");
 
@@ -410,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
           method: "POST",
           body: formData,
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
         });
 
@@ -426,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
             confirmationMessageAdd.style.display = "none";
           }, 3000);
 
-          // Actualiser la galerie
+          // Actualise la galerie
 
           afficherImagesDansModale();
           fetchAndDisplayWorks();
@@ -448,7 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedFile = photoFileInput.files[0];
 
     if (selectedFile) {
-      // Masquer l'icône, le bouton et le paragraphe
+      // Masque l'icône, le bouton et le paragraphe
       contentUploadImg.style.display = "none";
 
       // objet URL pour la photo sélectionnée
@@ -459,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
       imgElement.src = imageURL;
       imgElement.classList.add("selected-image");
 
-      // Ajouter l'image à la div "newPhotoPreview"
+      // Ajoute l'image à la div "newPhotoPreview"
       newPhotoPreview.appendChild(imgElement);
     }
   });
@@ -481,7 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Écoutez les changements dans les champs photoFile et photoTitle
+  // Écoute les changements dans les champs photoFile et photoTitle
   document
     .getElementById("photoFile")
     .addEventListener("change", handleValidation);
